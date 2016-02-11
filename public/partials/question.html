@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col-lg-12">
+        <a href="/#/question" type="button" class="btn btn-primary btn-lg btn-block">Задать вопрос</a>
+    </div>
+</div>
+
+<br/>
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                {{data.title}}
+            </div>
+            <div class="panel-body">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <p>{{data.text}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                Автор: <a href="/#/profile/{{data.user.name}}">{{data.user.name}}</a> | {{data.created_at}}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row" ng-show="data.replies.length">
+    <h2 class="col-lg-12">Ответы</h2>
+    <div class="col-lg-12" ng-repeat="comment in data.replies">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Автор: <a href="/#/profile/{{comment.user.name}}">{{comment.user.name}}</a> | {{comment.created_at}}
+            </div>
+            <div class="panel-body">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <p>{{comment.text}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <h2 class="col-lg-12">Оставит отзыв</h2>
+
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <form role="form" name="commentform" ng-submit="save()">
+            <div class="form-group">
+                <label>Ваше имя</label>
+                <div class="alert alert-danger" ng-show="error.name">{{error.name}}</div>
+                <input class="form-control" ng-model="comment_form.name" required>
+            </div>
+            <div class="form-group">
+                <label>Ваш ответ</label>
+                <div class="alert alert-danger" ng-show="error.text">{{error.text}}</div>
+                <textarea class="form-control" rows="8" ng-model="comment_form.text" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-disabled="commentform.$invalid">Отправить</button>
+            <button type="reset" class="btn btn-default" ng-click="clear()">Сбросить</button>
+        </form>
+    </div>
+    <div class="col-lg-3"></div>
+
+</div>

@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return abort(404);
-});
+//Route::get('/', function () {return abort(404);});
+Route::get('/', function(){return view('index');});
 
 /*
 |--------------------------------------------------------------------------

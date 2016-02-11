@@ -14,7 +14,8 @@ class UserReplyController extends Controller
 {
     public function index(Request $request, $name){
 
-        return response()->json(User::where(['name' => $name])->get()->load(['replies']));
+        $result = User::where(['name' => $name])->get()->load(['replies'])->toArray();
+        return response()->json(array_reverse($result));
     }
 
     public function store(Request $request, $name, $question_id)

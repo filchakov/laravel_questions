@@ -11,11 +11,12 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     public function index(){
-        return response()->json(User::all());
+        $result = User::all()->load(['questions', 'replies'])->toArray();
+        return response()->json(array_reverse($result));
     }
 
     public function show($name){
-        return response()->json(User::where(['name' => $name])->get());
+        return response()->json(User::where(['name' => $name])->with(['questions', 'replies', 'replies.question'])->get()[0]);
     }
 
     public function store(Request $request){

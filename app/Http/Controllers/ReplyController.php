@@ -12,7 +12,8 @@ class ReplyController extends Controller
 {
     public function index()
     {
-        return response()->json(Reply::all()->load(['user', 'question']));
+        $result = Reply::all()->load(['user', 'question'])->toArray();
+        return response()->json(array_reverse($result));
     }
 
     public function show($id)

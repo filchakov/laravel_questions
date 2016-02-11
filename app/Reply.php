@@ -8,7 +8,7 @@ class Reply extends Model
 {
     protected $fillable = ['text', 'question_id', 'user_id', 'is_delete'];
 
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = ['updated_at'];
 
     public function question()
     {

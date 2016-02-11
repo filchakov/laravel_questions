@@ -15,15 +15,15 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $result = Question::all()->load('replies');
-        return response()->json($result);
+        $result = Question::all()->load('replies', 'user')->toArray();
+        return response()->json(array_reverse($result));
     }
 
     public function show($id)
     {
         $question = Question::find($id);
         if(!is_null($question)){
-            $result = $question->load(['user', 'replies']);
+            $result = $question->load(['user', 'replies', 'replies.user']);
         } else {
             return response()->json(['question_id'=>['question_id' => 'Invalida ID question']], 400);
         }

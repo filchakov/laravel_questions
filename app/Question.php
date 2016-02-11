@@ -8,7 +8,7 @@ class Question extends Model
 {
     protected $fillable = ['title', 'text', 'user_id', 'is_delete'];
 
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = ['updated_at'];
 
     public function replies()
     {

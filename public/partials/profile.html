@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-lg-12">
+        <a href="/#/question" type="button" class="btn btn-primary btn-lg btn-block">Задать вопрос</a>
+    </div>
+</div>
+
+<h1>{{data.name}}</h1>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Вопросы</div>
+            <div class="panel-body">
+                <div class="panel-body">
+                    <div class="table-responsive" style="overflow: scroll; height: 400px">
+
+                        <h4 class="text-center" ng-hide="data.questions.length">У этого пользователя еще нет вопросов</h4>
+
+                        <table class="table" ng-show="data.questions.length">
+                            <tbody>
+                            <tr ng-repeat="question in data.questions">
+                                <td>
+                                    <a href="/#/question/{{question.id}}">{{question.title}}</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-4 -->
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Комментарии
+            </div>
+            <div class="panel-body">
+                <div class="panel-body">
+                    <div class="table-responsive" style="overflow: scroll; height: 400px">
+
+                        <h4 class="text-center" ng-hide="data.replies.length">У этого пользователя еще нет комментариев</h4>
+
+                        <table class="table" ng-show="data.replies.length">
+                            <tbody>
+                            <tr ng-repeat="reply in data.replies">
+                                <td><a href="/#/question/{{reply.question_id}}">{{reply.question.title}}</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+</div>
