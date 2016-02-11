@@ -15,30 +15,18 @@ class QuestionController extends Controller
 
     public function index()
     {
-        return response()->json(Question::all());
+        $result = Question::all()->load('replies');
+        return response()->json($result);
     }
 
     public function show($id)
     {
-        return response()->json(Question::find($id));
-    }
-
-    public function store(Request $request)
-    {
-        $validator = \Validator::make($request->all(), [
-            'title' => 'required|max:255|min:5',
-            'text' => 'required|min:10',
-            'user_name' => 'required|max:255|min:2',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+        $question = Question::find($id);
+        if(!is_null($question)){
+            $result = $question->load(['user', 'replies']);
+        } else {
+            return response()->json(['question_id'=>['question_id' => 'Invalida ID question']], 400);
         }
-        $params = $request->all();
-        $user = User::firstOrCreate(['name'=> $params['user_name']]);
-
-        $params['user_id'] = $user->id;
-
-        return response()->json(Question::create($params)->with('user')->first());
+        return response()->json($result);
     }
 }

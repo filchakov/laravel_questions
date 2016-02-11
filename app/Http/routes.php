@@ -28,7 +28,15 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'api/v1'], function () {
+
+    Route::get('user/{name}/question', 'UserQuestionController@index');
+    Route::post('user/{name}/question', 'UserQuestionController@store');
+
+    Route::get('user/{name}/reply', 'UserReplyController@index');
+    Route::post('user/{name}/question/{question_id}/reply', 'UserReplyController@store');
+
     Route::resource('user', 'UserController', ['only' => ['index', 'show', 'store']]);
-    Route::resource('question', 'QuestionController', ['only' => ['index', 'show', 'store']]);
-    //Route::resource('reply', 'ReplyController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+    Route::resource('question', 'QuestionController', ['only' => ['index', 'show']]);
+    Route::resource('reply', 'ReplyController', ['only' => ['index', 'show']]);
+
 });

@@ -12,7 +12,7 @@ class Question extends Model
 
     public function replies()
     {
-        return $this->hasMany('App\Reply');
+        return $this->hasMany('App\Reply')->orderBy('id', 'desc');
     }
 
     public function user()

@@ -13,12 +13,12 @@ class User extends Model
 
     public function replies()
     {
-        return $this->hasMany('App\Reply');
+        return $this->hasMany('App\Reply')->orderBy('id', 'desc');
     }
 
     public function questions()
     {
-        return $this->hasMany('App\Question');
+        return $this->hasMany('App\Question')->orderBy('id', 'desc');
     }
 
 }

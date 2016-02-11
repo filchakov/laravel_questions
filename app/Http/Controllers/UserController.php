@@ -14,8 +14,8 @@ class UserController extends Controller
         return response()->json(User::all());
     }
 
-    public function show($id){
-        return response()->json(User::find($id));
+    public function show($name){
+        return response()->json(User::where(['name' => $name])->get());
     }
 
     public function store(Request $request){
