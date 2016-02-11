@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return abort(404);
 });
 
 /*
@@ -26,6 +26,9 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+
+Route::group(['prefix' => 'api/v1'], function () {
+    Route::resource('user', 'UserController', ['only' => ['index', 'show', 'store']]);
+    Route::resource('question', 'QuestionController', ['only' => ['index', 'show', 'store']]);
+    //Route::resource('reply', 'ReplyController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
 });
