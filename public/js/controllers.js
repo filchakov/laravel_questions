@@ -81,8 +81,8 @@ parserAppController.controller('QuestionCtrl', ['$scope', '$routeParams', '$http
                 url: config.api_link + 'user/' + $scope.comment_form.name + '/question/'+ $routeParams.question_id +'/reply',
                 data: $scope.comment_form
             }).success(function (data) {
-                updatePage();
                 $scope.comment_form = {};
+                updatePage();
             }).error(function (data) {
                 for (var key in data) {
                     $scope.error[key] = data[key][0];
